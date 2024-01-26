@@ -10,7 +10,9 @@ PM/
 # alles ZIP ignorieren: (außnahmen mit ! )
 *.zip
 
+# einzelne Dateien not to ignore:
 
+!buildozer.spec
 
 
 
