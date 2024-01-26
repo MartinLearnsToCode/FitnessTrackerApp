@@ -1,0 +1,79 @@
+
+<CardioScreen>:
+    id: CardioScreen
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: "10dp"
+        
+        MDLabel:
+            text:"Add Cardio Activity"
+            font_style:"H4"
+            halign: "center"
+            size_hint_y: 0.1
+
+        MDBoxLayout:
+            orientation:'vertical'
+            spacing: dp(10)
+            padding: '20dp'
+            padding_bottom: '40dp'
+            MDBoxLayout:
+                orientation:'horizontal'
+                MDLabel:
+                    text:"Excercise:"
+                    halign: "center"
+                    size_hint_x: 1
+                    size_hint_y: None
+                    height: 40   
+
+                Spinner:
+                    id: cardio_exercise_input
+                    size_hint_x: 2
+                    size_hint_y: None
+                    height: 40
+                    text: 'CrossTrainer'
+                    values: app.cardio_exercises 
+                    on_text: print("The spinner {} has text {}".format(self, self.text))
+            MDBoxLayout:
+                orientation:'horizontal'
+                MDLabel:
+                    text:"Set Time:"
+                    halign: "center"
+                    size_hint_x: 1
+                    size_hint_y: None
+                    height: 40   
+                MDTextField:
+                    id: cardio_time_input
+                    input_type: 'number'
+                    size_hint_x: 2
+                    size_hint_y: None
+                    height: 40
+                    max_text_length: 6  # Considering max 2 digits before the point and 2 digits after the point
+                    hint_text: 'Enter Duration (Minutes)'
+                    multiline: False
+                    input_filter: 'float'
+                    on_text: print("The text entered is", self.text)
+            MDBoxLayout:
+                orientation:'horizontal'
+                MDLabel:
+                    text:"Cardio Style:"
+                    halign: "center"
+                    size_hint_x: 1
+                    size_hint_y: None
+                    height: 40   
+                Spinner:
+                    id: cardio_style_input
+                    size_hint_x: 2
+                    size_hint_y: None
+                    height: 40
+                    text: 'Intervals'
+                    values: 'Intervals', 'Steady-State low', 'Steady-State mid', 'Steady-State high'
+                    on_text: print("The spinner {} has text {}".format(self, self.text))
+
+        MDRaisedButton:
+            text: "Save Set"
+            size_hint_y: 0.1
+            pos_hint: {"center_x": 0.5}
+            size_hint_x: 0.5
+            padding: "10dp"
+            on_release: app.save_data('cardio', cardio_exercise_input.text, cardio_time_input.text, cardio_style_input.text), app.main_menu.show_alert_dialog()

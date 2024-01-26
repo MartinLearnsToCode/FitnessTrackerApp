@@ -1,0 +1,183 @@
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+
+<MainMenu>
+    id: MainMenu
+    MDScreen:
+        MDNavigationLayout:
+            MDScreenManager:
+                id: screen_manager
+                Screen:
+                    name: "train_screen"
+                    TrainScreen
+                Screen:
+                    name: "train_plan_screen"
+                    TrainingsPlanScreen
+                Screen:
+                    name: "select_exercises_screen"
+                    SelectExerciseScreen
+                Screen:
+                    name: "desgin_plan_screen"
+                    DesignTrainingsPlanScreen
+                Screen:
+                    name: "show_data_screen"
+                    ShowDataScreen
+                Screen:
+                    name: "settings_screen"
+                    SettingsScreen
+            MDNavigationDrawer:
+                id: nav_drawer
+                radius: (0, 16, 16, 0)
+                ContentNavigationDrawer
+
+
+<ContentNavigationDrawer>
+    id: nav_drawer
+    MDNavigationDrawerMenu:
+        MDNavigationDrawerHeader:
+            title: "Header title"
+            spacing: "4dp"
+            padding: "12dp", 0, 0, "56dp"
+
+        MDNavigationDrawerLabel:
+            text: "Training"
+
+        DrawerClickableItem:
+            icon: "dumbbell"
+            text: "Train"
+            on_release: app.root.ids.nav_drawer.set_state("close"); app.root.ids.screen_manager.current = "train_screen"
+
+        DrawerClickableItem:
+            icon: "run"
+            text: "Train by Plan"
+            on_release: app.root.ids.nav_drawer.set_state("close"); app.root.ids.screen_manager.current = "train_plan_screen"
+            #on_release: app.root.ids.nav_drawer.set_state("close")
+
+        MDNavigationDrawerDivider:
+
+        MDNavigationDrawerLabel:
+            text: "View all Progress"
+        DrawerClickableItem:
+            icon: "chart-line"
+            text: "Show Stats"
+            on_release: app.root.ids.nav_drawer.set_state("close"); app.root.ids.screen_manager.current = "show_data_screen"
+
+        MDNavigationDrawerDivider:
+
+        MDNavigationDrawerLabel:
+            text: "Plan your Training"
+        DrawerClickableItem:
+            icon: "dumbbell"
+            text: "Select Exercises"
+            on_release: app.root.ids.nav_drawer.set_state("close"); app.root.ids.screen_manager.current = "select_exercises_screen"
+        DrawerClickableItem:
+            icon: "dumbbell"
+            text: "Design Trainingplan"
+            on_release: app.root.ids.nav_drawer.set_state("close"); app.root.ids.screen_manager.current = "desgin_plan_screen"
+
+        MDNavigationDrawerDivider:
+
+        MDNavigationDrawerLabel:
+            text: "Settings"
+        DrawerClickableItem:
+            icon: "dumbbell"
+            text: "Settings"
+            on_release: app.root.ids.nav_drawer.set_state("close"); app.root.ids.screen_manager.current = "desgin_plan_screen"
+
+<TrainScreen>
+    id: TrainScreen
+    orientation: 'vertical'
+    MDTopAppBar:
+        title: "Train!"
+        elevation: 4
+        pos_hint: {"top": 1}
+        left_action_items:
+            [['menu', lambda x: app.root.ids.nav_drawer.set_state("open")]]
+    MDBottomNavigation:
+        # Add a NavigationItem for each Navigation.
+        MDBottomNavigationItem:
+            name: "weight"
+            text: "Weight Training"
+            icon: "dumbbell"
+            WeightScreen
+        MDBottomNavigationItem:
+            name: "cardio"
+            text: "Cardio Training"
+            icon: "run"
+            CardioScreen
+        MDBottomNavigationItem:
+            name: "wellness"
+            text: "Wellness"
+            icon: "spa"
+            WellnessScreen
+
+<TrainingsPlanScreen>
+    orientation: 'vertical'
+    MDTopAppBar:
+        title: "Train by Workout Plan!"
+        elevation: 4
+        pos_hint: {"top": 1}
+        left_action_items:
+            [['menu', lambda x: app.root.ids.nav_drawer.set_state("open")]]
+
+<SelectExerciseScreen>
+    orientation: 'vertical'
+    MDTopAppBar:
+        title: "Select your exercises!"
+        elevation: 4
+        pos_hint: {"top": 1}
+        left_action_items:
+            [['menu', lambda x: app.root.ids.nav_drawer.set_state("open")]]
+
+<DesignTrainingsPlanScreen>
+    orientation: 'vertical'
+    MDTopAppBar:
+        title: "Design a Workout Plan!"
+        elevation: 4
+        pos_hint: {"top": 1}
+        left_action_items:
+            [['menu', lambda x: app.root.ids.nav_drawer.set_state("open")]]
+
+<ShowDataScreen>
+    orientation: 'vertical'
+    MDTopAppBar:
+        title: "Analyze your Progress!"
+        elevation: 4
+        pos_hint: {"top": 1}
+        left_action_items:
+            [['menu', lambda x: app.root.ids.nav_drawer.set_state("open")]]
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: 'Current Session ID:'
+        MDRaisedButton:
+            text: "click"
+            #on_release: app.get_stats_session()
+        MDLabel:
+            text: app.db_path
+
+
+<SettingsScreen>
+    orientation: 'vertical'
+    MDTopAppBar:
+        title: "Settings follow soon!"
+        elevation: 4
+        pos_hint: {"top": 1}
+        left_action_items:
+            [['menu', lambda x: app.root.ids.nav_drawer.set_state("open")]]
+
+<CustomSpinnerOption>:
+    height: 40  # Set the desired height for the spinner option
