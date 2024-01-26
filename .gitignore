@@ -5,6 +5,7 @@
 #Folders to ignore
 Version vor SQLite/
 PM/
+.vscode/
 
 # alles ZIP ignorieren: (außnahmen mit ! )
 *.zip
