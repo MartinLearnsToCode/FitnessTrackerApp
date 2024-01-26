@@ -31,7 +31,8 @@ class MainApp(MDApp):
 	def build(self):
 		self.db_file_name = "training_diary.db"
 
-		self.folder = '/storage/emulated/0'
+		#self.folder = '/storage/emulated/0'
+		self.folder = ""
 		self.db_path = os.path.join(self.folder, self.db_file_name)
 
 		#create db if not exist

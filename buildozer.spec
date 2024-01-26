@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = TestApp11
+title = TestApp12
 
 # (str) Package name
-package.name = TestApp11package
+package.name = TestApp12package
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = Martin.test
@@ -29,7 +29,7 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.11.0
+version = 0.12.0
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
